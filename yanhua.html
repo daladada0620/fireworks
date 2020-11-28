@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>  
+<html>  
+  <head>  
+    <title>烟花</title>  
+ <meta charset="utf-8">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+    <style>
+    	canvas{
+    		background-color: #353233;
+    	}
+    </style>
+  </head>  
+  <body>  
+<canvas width="600" height="600" id="canvas"></canvas>  
+ <script> 
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var canvasWidth = canvas.width;
+	var rate = 0.9;
+	ctx.shadowBlur = 150;
+  ctx.shadowColor = "rgba(251, 249, 203, 1)";
+	// 左
+	function draw1(x,y,h,w, r,a,color)
+	{
+		var angel = a;
+		var sinAngel = Math.sin(angel*Math.PI / 180);
+		var cosAngel = Math.cos(angel*Math.PI / 180);
+		var tanAngel = Math.tan(angel*Math.PI / 180);
+		var hypotenuse = h / 2 / Math.sin(angel*Math.PI / 180);
+		var p1x = x - ((w * rate - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p1y = y - (w * rate - h / 2 / tanAngel) * sinAngel;
+		var p2x = x - ((w - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p2y = y - (w - h / 2 / tanAngel) * sinAngel ;
+		var p3x = x - w * cosAngel;
+		var p3y = y - w * sinAngel;
+		var p4x = x - ((w + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p4y = y - (w + h / 2 / tanAngel) * sinAngel;
+		var p5x = x - ((w * rate + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p5y = y - (w * rate + h / 2 / tanAngel) * sinAngel;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.stroke();
+		ctx.bezierCurveTo(p1x,p1y,p2x, p2y,p3x,p3y);
+		ctx.bezierCurveTo(p4x, p4y,p5x,p5y,x,y);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	// 右
+	function draw2(x,y,h,w, r,a,color)
+	{
+		var angel = a;
+		var sinAngel = Math.sin(angel*Math.PI / 180);
+		var cosAngel = Math.cos(angel*Math.PI / 180);
+		var tanAngel = Math.tan(angel*Math.PI / 180);
+		var hypotenuse = h / 2 / Math.sin(angel*Math.PI / 180);
+		var p1x = x + ((w * rate - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p1y = y + (w * rate - h / 2 / tanAngel) * sinAngel;
+		var p2x = x + ((w - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p2y = y + (w - h / 2 / tanAngel) * sinAngel ;
+		var p3x = x + w * cosAngel;
+		var p3y = y + w * sinAngel;
+		var p4x = x + ((w + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p4y = y + (w + h / 2 / tanAngel) * sinAngel;
+		var p5x = x + ((w * rate + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p5y = y + (w * rate + h / 2 / tanAngel) * sinAngel;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.bezierCurveTo(p1x,p1y,p2x, p2y,p3x,p3y);
+		ctx.bezierCurveTo(p4x, p4y,p5x,p5y,x,y);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	// 上
+	function draw3(x,y,h,w, r,a,color)
+	{
+		var angel = 90 - a;
+		var sinAngel = Math.sin(angel*Math.PI / 180);
+		var cosAngel = Math.cos(angel*Math.PI / 180);
+		var tanAngel = Math.tan(angel*Math.PI / 180);
+		var hypotenuse = h / 2 / Math.sin(angel*Math.PI / 180);
+		var p1x = x + ((w * rate - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p1y = y - (w * rate - h / 2 / tanAngel) * sinAngel;
+		var p2x = x + ((w - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p2y = y - (w - h / 2 / tanAngel) * sinAngel ;
+		var p3x = x + w * cosAngel;
+		var p3y = y - w * sinAngel;
+		var p4x = x + ((w + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p4y = y - (w + h / 2 / tanAngel) * sinAngel;
+		var p5x = x + ((w * rate + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p5y = y - (w * rate + h / 2 / tanAngel) * sinAngel;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.bezierCurveTo(p1x,p1y,p2x, p2y,p3x,p3y);
+		ctx.bezierCurveTo(p4x, p4y,p5x,p5y,x,y);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	// 下
+	function draw4(x,y,h,w, r,a,color)
+	{
+		var angel = 90 - a;
+		var sinAngel = Math.sin(angel*Math.PI / 180);
+		var cosAngel = Math.cos(angel*Math.PI / 180);
+		var tanAngel = Math.tan(angel*Math.PI / 180);
+		var hypotenuse = h / 2 / Math.sin(angel*Math.PI / 180);
+		var p1x = x - ((w * rate - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p1y = y + (w * rate - h / 2 / tanAngel) * sinAngel;
+		var p2x = x - ((w - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p2y = y + (w - h / 2 / tanAngel) * sinAngel ;
+		var p3x = x - w * cosAngel;
+		var p3y = y + w * sinAngel;
+		var p4x = x - ((w + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p4y = y + (w + h / 2 / tanAngel) * sinAngel;
+		var p5x = x - ((w * rate + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p5y = y + (w * rate + h / 2 / tanAngel) * sinAngel;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.bezierCurveTo(p1x,p1y,p2x, p2y,p3x,p3y);
+		ctx.bezierCurveTo(p4x, p4y,p5x,p5y,x,y);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	// 左上
+	function draw5(x,y,h,w, r,a,color)
+	{
+		var angel = a + 45;
+		var sinAngel = Math.sin(angel*Math.PI / 180);
+		var cosAngel = Math.cos(angel*Math.PI / 180);
+		var tanAngel = Math.tan(angel*Math.PI / 180);
+		var hypotenuse = h / 2 / Math.sin(angel*Math.PI / 180);
+		var p1x = x - ((w * rate - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p1y = y - (w * rate - h / 2 / tanAngel) * sinAngel;
+		var p2x = x - ((w - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p2y = y - (w - h / 2 / tanAngel) * sinAngel ;
+		var p3x = x - w * cosAngel;
+		var p3y = y - w * sinAngel;
+		var p4x = x - ((w + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p4y = y - (w + h / 2 / tanAngel) * sinAngel;
+		var p5x = x - ((w * rate + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p5y = y - (w * rate + h / 2 / tanAngel) * sinAngel;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.stroke();
+		ctx.bezierCurveTo(p1x,p1y,p2x, p2y,p3x,p3y);
+		ctx.bezierCurveTo(p4x, p4y,p5x,p5y,x,y);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	// 右上
+	function draw6(x,y,h,w, r,a,color)
+	{
+		var angel = 45 - a;
+		var sinAngel = Math.sin(angel*Math.PI / 180);
+		var cosAngel = Math.cos(angel*Math.PI / 180);
+		var tanAngel = Math.tan(angel*Math.PI / 180);
+		var hypotenuse = h / 2 / Math.sin(angel*Math.PI / 180);
+		var p1x = x + ((w * rate - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p1y = y - (w * rate - h / 2 / tanAngel) * sinAngel;
+		var p2x = x + ((w - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p2y = y - (w - h / 2 / tanAngel) * sinAngel ;
+		var p3x = x + w * cosAngel;
+		var p3y = y - w * sinAngel;
+		var p4x = x + ((w + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p4y = y - (w + h / 2 / tanAngel) * sinAngel;
+		var p5x = x + ((w * rate + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p5y = y - (w * rate + h / 2 / tanAngel) * sinAngel;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.bezierCurveTo(p1x,p1y,p2x, p2y,p3x,p3y);
+		ctx.bezierCurveTo(p4x, p4y,p5x,p5y,x,y);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	// 左下
+	function draw7(x,y,h,w, r,a,color)
+	{
+		var angel = 45 - a;
+		var sinAngel = Math.sin(angel*Math.PI / 180);
+		var cosAngel = Math.cos(angel*Math.PI / 180);
+		var tanAngel = Math.tan(angel*Math.PI / 180);
+		var hypotenuse = h / 2 / Math.sin(angel*Math.PI / 180);
+		var p1x = x - ((w * rate - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p1y = y + (w * rate - h / 2 / tanAngel) * sinAngel;
+		var p2x = x - ((w - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p2y = y + (w - h / 2 / tanAngel) * sinAngel ;
+		var p3x = x - w * cosAngel;
+		var p3y = y + w * sinAngel;
+		var p4x = x - ((w + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p4y = y + (w + h / 2 / tanAngel) * sinAngel;
+		var p5x = x - ((w * rate + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p5y = y + (w * rate + h / 2 / tanAngel) * sinAngel;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.bezierCurveTo(p1x,p1y,p2x, p2y,p3x,p3y);
+		ctx.bezierCurveTo(p4x, p4y,p5x,p5y,x,y);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	// 右下
+	function draw8(x,y,h,w, r,a,color)
+	{
+		var angel = 45 + a;
+		var sinAngel = Math.sin(angel*Math.PI / 180);
+		var cosAngel = Math.cos(angel*Math.PI / 180);
+		var tanAngel = Math.tan(angel*Math.PI / 180);
+		var hypotenuse = h / 2 / Math.sin(angel*Math.PI / 180);
+		var p1x = x + ((w * rate - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p1y = y + (w * rate - h / 2 / tanAngel) * sinAngel;
+		var p2x = x + ((w - h / 2 / tanAngel) * cosAngel + hypotenuse);
+		var p2y = y + (w - h / 2 / tanAngel) * sinAngel ;
+		var p3x = x + w * cosAngel;
+		var p3y = y + w * sinAngel;
+		var p4x = x + ((w + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p4y = y + (w + h / 2 / tanAngel) * sinAngel;
+		var p5x = x + ((w * rate + h / 2 / tanAngel) * cosAngel - hypotenuse);
+		var p5y = y + (w * rate + h / 2 / tanAngel) * sinAngel;
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.bezierCurveTo(p1x,p1y,p2x, p2y,p3x,p3y);
+		ctx.bezierCurveTo(p4x, p4y,p5x,p5y,x,y);
+		ctx.closePath();
+		ctx.fillStyle = color;
+		ctx.fill();
+	}
+	function calcEight(x,y,r, angle,h, w, color)
+	{
+					// 左
+					var p1x = x - r * Math.cos(angle * Math.PI / 180);
+					var p1y = y - r * Math.sin(angle * Math.PI / 180);
+					// 右
+					var p2x = x + r * Math.cos(angle * Math.PI / 180);
+					var p2y = y + r * Math.sin(angle * Math.PI / 180);
+					// 上
+					var p3x = x + r * Math.sin(angle * Math.PI / 180);
+					var p3y = y - r * Math.cos(angle * Math.PI / 180);
+					// 下
+					var p4x = x - r * Math.sin(angle * Math.PI / 180);
+					var p4y = y + r * Math.cos(angle * Math.PI / 180);
+					// 左上
+					var p5x = x - r * Math.cos((angle + 45) * Math.PI / 180);
+					var p5y = y - r * Math.sin((angle + 45) * Math.PI / 180);
+					// 右上
+					var p6x = x + r * Math.cos((45 - angle) * Math.PI / 180);
+					var p6y = y - r * Math.sin((45 - angle) * Math.PI / 180);
+					// 左下
+					var p7x = x - r * Math.cos((45 - angle) * Math.PI / 180);
+					var p7y = y + r * Math.sin((45 - angle) * Math.PI / 180);
+					// 右下
+					var p8x = x + r * Math.cos((angle + 45) * Math.PI / 180);
+					var p8y = y + r * Math.sin((angle + 45) * Math.PI / 180);
+					// 左
+					draw1(p1x, p1y, h, w, Math.PI,angle,color);
+					// 右
+					draw2(p2x, p2y, h, w, Math.PI,angle,color);
+					// 上
+					draw3(p3x, p3y, h, w, Math.PI / 2,angle,color);
+					// 下
+					draw4(p4x, p4y, h, w, Math.PI / 2,angle,color);
+					// 左上
+					draw5(p5x, p5y, h, w, Math.PI,angle,color);
+					// 右上
+					draw6(p6x, p6y, h, w, Math.PI,angle,color);
+					// 左下
+					draw7(p7x, p7y, h, w, Math.PI / 2,angle,color);
+					// 右下
+					draw8(p8x, p8y, h, w, Math.PI / 2,angle,color);
+	}
+	function draw(canvasW, pointR, angel)
+	{
+		ctx.beginPath();
+		ctx.arc(pointR, pointR, canvasW * 0.05, 0, 2 * Math.PI, 0);
+		ctx.closePath();
+		ctx.fillStyle= "rgba(251, 249, 203, 1)";
+		ctx.fill();
+		// 圆心横坐标、    圆心纵坐标、   半径、   偏移角度、     瓣高  、     瓣宽、    颜色 
+		// 第一圈
+		calcEight(pointR, pointR, canvasW * 0.05, 1+angel,canvasW * 0.02, canvasW * 0.15, "#E4AF6A");
+		calcEight(pointR, pointR, canvasW * 0.05, 11+angel,canvasW * 0.02, canvasW * 0.15, "#F8EEB0");
+		// 第二圈
+	  calcEight(pointR, pointR, canvasW * 0.1, 28+angel,canvasW * 0.08, canvasW * 0.35, "#E4AF6A");
+		calcEight(pointR, pointR, canvasW * 0.1, 36+angel,canvasW * 0.08, canvasW * 0.35, "#F8EEB0");
+		// 第三圈
+		calcEight(pointR, pointR, canvasW * 0.075, 20+angel,canvasW * 0.058, canvasW * 0.3, "#E4AF6A");
+		calcEight(pointR, pointR, canvasW * 0.075, 28+angel,canvasW * 0.058, canvasW * 0.3, "#F8EEB0");
+		// 第四圈
+		calcEight(pointR, pointR,  canvasW * 0.29, 9+angel,canvasW * 0.03, canvasW * 0.2, "#E4AF6A");
+		calcEight(pointR, pointR,  canvasW * 0.29, 1+angel,canvasW * 0.03, canvasW * 0.2, "#F8EEB0");
+	}
+	function init()
+	{
+		var pointR = canvasWidth / 2;
+		var cw = 0;
+		var aT = 0;
+		var cwSpeed = canvasWidth / 30;
+		var aSpeed = 45 / 30;
+		var timer = setInterval(function()
+		{
+			if(cw < canvasWidth)
+			{
+				cw += cwSpeed;
+				ctx.clearRect(0, 0, canvasWidth, canvasWidth);
+				ctx.fill();
+				draw(cw, pointR, aT);
+			}
+			else
+			{
+				ctx.globalAlpha = 0;
+				clearInterval(timer);
+			}
+		}, 50);
+	}
+	init();
+ 	</script>  
+  </body>  
+</html>
